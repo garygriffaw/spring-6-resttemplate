@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -66,5 +67,24 @@ class BeerClientImplTest {
         BeerDTO savedDto = beerClient.createBeer(newDto);
 
         assertNotNull(savedDto);
+    }
+
+    @Test
+    void testUpdateBeer() {
+        BeerDTO newDto = BeerDTO.builder()
+                .beerName("New beer")
+                .beerStyle(BeerStyle.LAGER)
+                .price(new BigDecimal("9.99"))
+                .quantityOnHand(100)
+                .upc("1234")
+                .build();
+
+        BeerDTO beerDto = beerClient.createBeer(newDto);
+
+        final String newName = "New beer 2";
+        beerDto.setBeerName(newName);
+        BeerDTO updatedBeer = beerClient.updateBeer(beerDto);
+
+        assertEquals(updatedBeer.getBeerName(), newName);
     }
 }
