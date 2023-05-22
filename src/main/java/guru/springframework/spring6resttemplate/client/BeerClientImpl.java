@@ -80,4 +80,10 @@ public class BeerClientImpl implements BeerClient {
         restTemplate.put(BEER_BY_ID_PATH, beerDto, beerDto.getId());
         return getBeerById(beerDto.getId());
     }
+
+    @Override
+    public void deleteBeer(UUID beerId) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        restTemplate.delete(BEER_BY_ID_PATH, beerId);
+    }
 }
