@@ -20,8 +20,8 @@ public class BeerClientImpl implements BeerClient {
 
     private final RestTemplateBuilder restTemplateBuilder;
 
-    private static final String BEER_PATH = "/api/v1/beer";
-    private static final String BEER_BY_ID_PATH = "/api/v1/beer/{beerId}";
+    public static final String BEER_PATH = "/api/v1/beer";
+    public static final String BEER_BY_ID_PATH = "/api/v1/beer/{beerId}";
 
     @Override
     public Page<BeerDTO> listBeers() {
@@ -42,8 +42,8 @@ public class BeerClientImpl implements BeerClient {
 
         if (showInventory != null)
             uriComponentsBuilder.queryParam("showInventory", showInventory);
-        else
-            uriComponentsBuilder.queryParam("showInventory", "false");
+//        else
+//            uriComponentsBuilder.queryParam("showInventory", "false");
 
         if (pageNumber != null)
             uriComponentsBuilder.queryParam("pageNumber", pageNumber);
